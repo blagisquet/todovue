@@ -3,21 +3,28 @@
     <div class="todo-wrapper">
       <div class="todo-container">
         <Todolist :todos="todos" />
+        <div class="todo-button">
+          <div @click="openModal" class="button">New todo</div>
+        </div>
       </div>
     </div>
+    <Modal :isOpen="isModalOpen" />
   </div>
 </template>
 
 <script>
 import Todolist from "@/components/Todolist";
+import Modal from "@/components/Modal";
 
 export default {
   name: "app",
   components: {
-    Todolist
+    Todolist,
+    Modal,
   },
   data() {
     return {
+      isModalOpen: false,
       todos: [
         {
           _id: "1",
@@ -36,6 +43,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    openModal() {
+      this.isModalOpen = !this.isModalOpen
+    }
   }
 };
 </script>
@@ -48,6 +60,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.todo-button {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 4px; 
+  background-color: purple;
+  color: white;
+  margin: 120px 10px 10px;
 }
 
 .todo-wrapper {

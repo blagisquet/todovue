@@ -64,7 +64,7 @@ export default {
   border-radius: 4px;
   background-color: purple;
   color: white;
-  margin: 120px 10px 10px;
+  margin: 12px 10px 10px;
   cursor: pointer;
 }
 

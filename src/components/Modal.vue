@@ -1,26 +1,54 @@
 <template>
-  <div class="modal" :class="{'is-active': isActive}">
-    <div class="modal-content">Insert a thing to do</div>
+  <div>
+    <div class="todo-button">
+      <div @click="isOpen = true" class="button">New todo</div>
+    </div>
+    <div class="modal" :class="{'is-active': isOpen}">
+      <div class="modal-content">
+        <span @click="close" class="close">&times;</span>
+        <slot />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    isOpen: {
-      required: true,
-      type: Boolean
+  // props: {
+  //   close: {
+  //     type: Boolean,
+  //     required: false,
+  //   }
+  // },
+  data() {
+    return {
+      isOpen: false,
     }
   },
-  data: function () {
-    return {
-      isActive: false
+  watch: {
+    close(isClose) {
+      if (isClose === true && this.isOpen === true) {
+        this.isOpen = false;
+      }
+    }
+  },
+  methods: {
+    close() {
+      this.isOpen = false
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+
+.close {
+  color: grey;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 .modal {
   display: none;

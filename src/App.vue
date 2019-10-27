@@ -3,28 +3,24 @@
     <div class="todo-wrapper">
       <div class="todo-container">
         <Todolist :todos="todos" />
-        <div class="todo-button">
-          <div @click="openModal" class="button">New todo</div>
-        </div>
+        <TodoCreate @formSubmitted="createTodo" />
       </div>
     </div>
-    <Modal :isOpen="isModalOpen" />
   </div>
 </template>
 
 <script>
 import Todolist from "@/components/Todolist";
-import Modal from "@/components/Modal";
+import TodoCreate from "@/components/TodoCreate";
 
 export default {
   name: "app",
   components: {
     Todolist,
-    Modal,
+    TodoCreate
   },
   data() {
     return {
-      isModalOpen: false,
       todos: [
         {
           _id: "1",
@@ -45,8 +41,8 @@ export default {
     };
   },
   methods: {
-    openModal() {
-      this.isModalOpen = !this.isModalOpen
+    createTodo(todo) {
+      this.todos.push(todo);
     }
   }
 };
@@ -65,10 +61,11 @@ export default {
 .todo-button {
   font-size: 20px;
   padding: 10px;
-  border-radius: 4px; 
+  border-radius: 4px;
   background-color: purple;
   color: white;
   margin: 120px 10px 10px;
+  cursor: pointer;
 }
 
 .todo-wrapper {
@@ -99,5 +96,39 @@ export default {
 
 .todo-item-content-body {
   margin-top: 0.5rem;
+}
+
+.app-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+
+  label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 18px;
+    width: 50%;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
+  }
+
+  .button {
+    background-color: purple;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
 }
 </style>

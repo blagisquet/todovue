@@ -83,7 +83,7 @@ export default {
 
 .todo-item {
   background-color: grey;
-  height: 70px;
+  height: 120px;
   margin: 10px;
   color: white;
   border-radius: 5px;
